@@ -125,6 +125,32 @@ For the request above, the app will generate the following output:
 }
 ```
 
+### Logs for this example
+
+For the request above, the app will generate the following logs:
+
+```bash
+[1] Processing command: addVehicle
+[2] Adding vehicle: ID=vehicle1, from south to north
+[3] Set NORTH-SOUTH to GREEN, EAST-WEST to RED
+[4] Processing command: addVehicle
+[5] Adding vehicle: ID=vehicle2, from north to south
+[6] Processing command: step
+[7] Vehicles left the intersection: [vehicle1, vehicle2]
+[8] Processing command: step
+[9] No vehicles left the intersection
+[10] Processing command: addVehicle
+[11] Adding vehicle: ID=vehicle3, from west to south
+[12] Set EAST-WEST to GREEN, NORTH-SOUTH to RED
+[13] Processing command: addVehicle
+[14] Adding vehicle: ID=vehicle4, from west to south
+[15] Processing command: step
+[16] Vehicles left the intersection: [vehicle3]
+[17] Processing command: step
+[18] Vehicles left the intersection: [vehicle4]
+[19] Generating simulation response with 4 step statuses
+```
+
 ## Algorithm Explanation
 
 ### 1. Traffic Flow Management
