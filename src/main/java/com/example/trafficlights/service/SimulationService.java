@@ -1,27 +1,33 @@
 package com.example.trafficlights.service;
 
-import com.example.trafficlights.logger.LogCounter;
 import com.example.trafficlights.model.Vehicle;
 import com.example.trafficlights.model.Command;
 import com.example.trafficlights.model.SimulationResponse;
 import com.example.trafficlights.model.StepStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@Scope("request")
 public class SimulationService {
     private static final Logger logger = LoggerFactory.getLogger(SimulationService.class);
 
-    private Intersection intersection;
-    private List<StepStatus> stepStatuses = new ArrayList<>();
+    private final Intersection intersection;
+    private List<StepStatus> stepStatuses;
 
-    public SimulationService() { this.intersection = new Intersection(); }
+    public SimulationService(Intersection intersection) {
+        this.intersection = intersection;
+        stepStatuses = new ArrayList<>();
+    }
 
     public void processCommand(Command command) {
-        logger.info("[{}] Processing command: {}", LogCounter.getNextNumber(), command.getType());
+        logger.info("Processing command: {}", command.getType());
 
         switch (command.getType()) {
             case "addVehicle":
@@ -30,17 +36,16 @@ public class SimulationService {
                         command.getStartRoad(),
                         command.getEndRoad()
                 );
-                logger.info("[{}] Adding vehicle: ID={}, from {} to {}",
-                        LogCounter.getNextNumber(), vehicle.getId(), vehicle.getStartRoad(), vehicle.getEndRoad());
+                logger.info("Adding vehicle: ID={}, from {} to {}", vehicle.getId(), vehicle.getStartRoad(), vehicle.getEndRoad());
                 intersection.addVehicle(command.getStartRoad(), vehicle);
                 break;
 
             case "step":
                 List<String> leftVehicles = intersection.step();
                 if (!leftVehicles.isEmpty()) {
-                    logger.info("[{}] Vehicles left the intersection: {}", LogCounter.getNextNumber(), leftVehicles);
+                    logger.info("Vehicles left the intersection: {}", leftVehicles);
                 } else {
-                    logger.info("[{}] No vehicles left the intersection", LogCounter.getNextNumber());
+                    logger.info("No vehicles left the intersection");
                 }
                 StepStatus status = new StepStatus();
                 status.getLeftVehicles().addAll(leftVehicles);
@@ -51,8 +56,7 @@ public class SimulationService {
     }
 
     public SimulationResponse generateResponse() {
-        logger.info("[{}] Generating simulation response with {} step statuses",
-                LogCounter.getNextNumber(), stepStatuses.size());
+        logger.info("Generating simulation response with {} step statuses", stepStatuses.size());
         SimulationResponse response = new SimulationResponse();
         response.setStepStatuses(stepStatuses);
         return response;

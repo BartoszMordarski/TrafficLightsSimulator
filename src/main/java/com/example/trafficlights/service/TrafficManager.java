@@ -2,12 +2,14 @@ package com.example.trafficlights.service;
 
 import com.example.trafficlights.model.TrafficLight;
 import com.example.trafficlights.model.Vehicle;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 import static com.example.trafficlights.model.enums.Colors.*;
 import static com.example.trafficlights.model.enums.Roads.*;
 
+@Service
 public class TrafficManager {
 
     public List<String> getDirectionsToGo(Map<String, Queue<Vehicle>> roads, Map<String, TrafficLight> trafficLights) {

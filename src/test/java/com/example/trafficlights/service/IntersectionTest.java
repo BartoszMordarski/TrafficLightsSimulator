@@ -12,7 +12,7 @@ public class IntersectionTest {
 
     @BeforeEach
     public void setUp() {
-        intersection = new Intersection();
+        intersection = new Intersection(new TrafficLightManager(), new TrafficManager());
     }
 
     @Test

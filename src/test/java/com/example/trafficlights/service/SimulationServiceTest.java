@@ -13,7 +13,7 @@ public class SimulationServiceTest {
 
     @BeforeEach
     public void setUp() {
-        simulationService = new SimulationService();
+        simulationService = new SimulationService(new Intersection(new TrafficLightManager(), new TrafficManager()));
     }
 
     @Test
