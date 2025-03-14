@@ -16,9 +16,7 @@ import static com.example.trafficlights.model.enums.Roads.*;
 @Scope("request")
 public class TrafficLightManager {
     private static final Logger logger = LoggerFactory.getLogger(TrafficLightManager.class);
-
-    @Value("${trafficlights.cycle}")
-    public int MAX_CYCLE_STEP;
+    public static final int MAX_CYCLE_STEP = 6;
     private int currentCycleStep = 0;
 
     public void initTrafficLights(Map<String, TrafficLight> trafficLights, String road) {
