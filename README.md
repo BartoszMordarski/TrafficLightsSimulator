@@ -6,7 +6,7 @@ This project was created as part of a recruitment assignment for an internship a
 
 ## Technologies Used
 
-- **Java 17** - Core programming language
+- **Java 21** - Core programming language
 - **Spring Boot** - Framework for creating standalone Spring-based applications
 - **RESTful API** - For handling simulation commands
 - **SLF4J with Logback** - For comprehensive logging of the simulation
@@ -25,7 +25,7 @@ The application follows a standard Spring Boot architecture with:
 
 ### Prerequisites
 
-- Java 17 or higher
+- Java 21 or higher
 - Maven 3.6 or higher
 
 ### Steps to Run
