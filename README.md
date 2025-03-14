@@ -11,6 +11,7 @@ This project was created as part of a recruitment assignment for an internship a
 - **RESTful API** - For handling simulation commands
 - **SLF4J with Logback** - For comprehensive logging of the simulation
 - **Maven** - Dependency management and build tool
+- **JUnit** - testing framework for unit tests
 
 ## Application Architecture
 
@@ -130,25 +131,25 @@ For the request above, the app will generate the following output:
 For the request above, the app will generate the following logs:
 
 ```bash
-[1] Processing command: addVehicle
-[2] Adding vehicle: ID=vehicle1, from south to north
-[3] Set NORTH-SOUTH to GREEN, EAST-WEST to RED
-[4] Processing command: addVehicle
-[5] Adding vehicle: ID=vehicle2, from north to south
-[6] Processing command: step
-[7] Vehicles left the intersection: [vehicle1, vehicle2]
-[8] Processing command: step
-[9] No vehicles left the intersection
-[10] Processing command: addVehicle
-[11] Adding vehicle: ID=vehicle3, from west to south
-[12] Set EAST-WEST to GREEN, NORTH-SOUTH to RED
-[13] Processing command: addVehicle
-[14] Adding vehicle: ID=vehicle4, from west to south
-[15] Processing command: step
-[16] Vehicles left the intersection: [vehicle3]
-[17] Processing command: step
-[18] Vehicles left the intersection: [vehicle4]
-[19] Generating simulation response with 4 step statuses
+Processing command: addVehicle
+Adding vehicle: ID=vehicle1, from south to north
+Set NORTH-SOUTH to GREEN, EAST-WEST to RED
+Processing command: addVehicle
+Adding vehicle: ID=vehicle2, from north to south
+Processing command: step
+Vehicles left the intersection: [vehicle1, vehicle2]
+Processing command: step
+No vehicles left the intersection
+Processing command: addVehicle
+Adding vehicle: ID=vehicle3, from west to south
+Set EAST-WEST to GREEN, NORTH-SOUTH to RED
+Processing command: addVehicle
+Adding vehicle: ID=vehicle4, from west to south
+Processing command: step
+Vehicles left the intersection: [vehicle3]
+Processing command: step
+Vehicles left the intersection: [vehicle4]
+Generating simulation response with 4 step statuses
 ```
 
 ## Algorithm Explanation
@@ -286,11 +287,21 @@ public List<String> step() {
 
 ## Logging System
 
-The application features comprehensive logging with sequential numbering to help track the flow of events. Each log entry includes:
+The application features comprehensive logging to help track the flow of events. Each log entry includes:
 
-1. A sequential number at the beginning
-2. Descriptive message about the event
-3. Relevant data such as vehicle IDs, directions, traffic light states
+1. Descriptive message about the event
+2. Relevant data such as vehicle IDs, directions, traffic light states
+
+## Testing
+The application includes a comprehensive test suite to ensure the proper functioning of the traffic light simulation system. These tests verify the behavior of different components and their interactions. It includes unit tests for each servie and integration tests for the controller. 100% of classes and methods is covered by tests.
+
+The tests cover:
+
+1. Traffic light state management
+2. Vehicle movement rules
+3. Intersection management
+4. API validation
+5. End-to-end simulation scenarios
 
 ## Project Structure
 
@@ -315,9 +326,7 @@ src/main/java/com/example/trafficlights/
 │   ├── TrafficLightManager.java
 │   └── TrafficManager.java
 ├── validator/
-│   └── RequestValidator.java
-└── logger/
-    └── LogCounter.java
+    └── RequestValidator.java
 ```
 
 ## Extension Points
