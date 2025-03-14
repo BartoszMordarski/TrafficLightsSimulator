@@ -1,11 +1,14 @@
 package com.example.trafficlights.validator;
 
 import com.example.trafficlights.model.Command;
+import org.springframework.stereotype.Service;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class RequestValidator {
     private static final Set<String> VALID_COMMAND_TYPES = new HashSet<>(Arrays.asList("addVehicle", "step"));
     private static final Set<String> VALID_ROADS = new HashSet<>(Arrays.asList("north", "south", "east", "west"));
